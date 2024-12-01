@@ -1,0 +1,25 @@
+importScripts('https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/9.17.2/firebase-messaging.js');
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAPc9wib23m33bqLTJmcT1_IWOpk0K1BaQ",
+  authDomain: "asdjhgt-55c76.firebaseapp.com",
+  projectId: "asdjhgt-55c76",
+  storageBucket: "asdjhgt-55c76.firebasestorage.app",
+  messagingSenderId: "600422310755",
+  appId: "1:600422310755:web:a5609e9369d9f0f86e6956"
+};
+
+firebase.initializeApp(firebaseConfig);
+const messaging = firebase.messaging();
+
+messaging.onBackgroundMessage((payload) => {
+  console.log('رسالة في الخلفية:', payload);
+  const notificationTitle = payload.notification.title;
+  const notificationOptions = {
+    body: payload.notification.body,
+    icon: '/firebase-logo.png'
+  };
+
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});
